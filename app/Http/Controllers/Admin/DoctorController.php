@@ -24,7 +24,7 @@ class DoctorController extends Controller
         $data = DB::table('users')
             ->join('roles','users.role_id' , '=','roles.id')
             ->where('roles.title' , '=','doctor')
-            ->select('users.*')->get();
+            ->select('users.*')->paginate(5);
         return view('admin.doctor.index',compact('data'));
 
     }

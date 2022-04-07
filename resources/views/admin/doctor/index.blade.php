@@ -59,7 +59,7 @@
                             <th>{{ $value->department}}</th>
                             <td>
                                 <div class="table-actions">
-                                    <a  href="#"><i class="ik ik-eye" ></i></a>
+                                    <a href="#" data-toggle="modal" data-target="#exampleModal" data="{{$value->id}}"><i class="ik ik-eye" ></i></a>
                                     <a href="#"><i class="ik ik-edit-2"></i></a>
                                     <a href="#"><i class="ik ik-trash-2"></i></a>
                                 </div>
@@ -70,6 +70,33 @@
                         @endforelse
                         </tbody>
                     </table>
+                    <div style="float:right">
+                        {{ $data->links() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Doctor Information</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{-- Body Of Modal --}}
+                    <p>{{$value->name}}</p>
+                    <p>{{$value->email}}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
