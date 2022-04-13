@@ -8,16 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class Admin extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = ['name','email','password','gender','phone','address','image',
+    protected $fillable = ['name','email','password','gender','phone','address',
+        'department','education','image','description','role_id',
 
     ];
 
@@ -41,4 +37,17 @@ class User extends Authenticatable
     ];
 
 
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function hasPermission($name)
+    {
+        if (! $this->role){
+            return false;
+        }
+        return $this->role->permissions()->where('name',$name)->exists();
+    }
 }

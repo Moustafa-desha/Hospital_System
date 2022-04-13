@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Models\Role;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -20,11 +20,12 @@ class DoctorController extends Controller
     public function index()
     {
 
-//        $data = User::where('role_id','=' ,2)->get();
-        $data = DB::table('users')
-            ->join('roles','users.role_id' , '=','roles.id')
+//        $data = Admin::where('role_id','=' ,2)->get();
+        $data = DB::table('admins')
+            ->join('roles','admins.role_id' , '=','roles.id')
             ->where('roles.title' , '=','doctor')
-            ->select('users.*')->paginate(5);
+            ->select('admins.*')->paginate(5);
+
         return view('admin.doctor.index',compact('data'));
 
     }
@@ -36,7 +37,7 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        $roles = Role::where('title', '!=' ,'patient')->get();
+        $roles = Role::all();
         return view('admin.doctor.create',compact('roles'));
     }
 
@@ -87,7 +88,7 @@ class DoctorController extends Controller
                     /* to Distinguish he send doctor or admin and show in notification */
                    $roleName = Role::whereId($request->role_id)->select('title')->first();
 
-                    User::create($data);
+                    Admin::create($data);
 
              $notificat = array(
                  'message'    => $roleName->title .' created successful',
@@ -104,7 +105,8 @@ class DoctorController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = Admin::whereId($id)->first();
+        return view('admin.doctor.show',compact('user'));
     }
 
     /**
@@ -115,7 +117,11 @@ class DoctorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $roles = Role::where('title', '!=', 'patient')->get();
+
+        $user = Admin::findOrFail($id);
+
+        return view('admin.doctor.edit',compact('user','roles'));
     }
 
     /**
@@ -127,7 +133,64 @@ class DoctorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = Admin::findOrFail($id);
+
+
+        $validator = Validator::make($request->all(),[
+            'name'              =>  'required|string|max:255',
+            'email'             =>  'required|email|unique:users,email,'.$user->id,
+            'gender'            =>  'required|string|max:255',
+            'password'          =>  'sometimes|nullable|min:6|max:25',
+            'phone'             =>  'required|string:max:255',
+            'department'        =>  'required|string|max:255',
+            'education'         =>  'required|string|max:255',
+            'address'           =>  'required|string|max:255',
+            'role_id'           =>  'required|max:255',
+            'image'             =>  'mimes:jpeg,jpg,png,gif|max:2048',
+            'description'       =>  'max:5000',
+        ]);
+        if ($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
+
+
+        $data['name']           = $request->name;
+        $data['email']          = $request->email;
+        $data['gender']         = $request->gender;
+        $data['phone']          = $request->phone;
+        $data['department']     = $request->department;
+        $data['education']      = $request->education;
+        $data['address']        = $request->address;
+        $data['role_id']        = $request->role_id;
+        $data['description']    = $request->description;
+        $image                  = $request->image;
+
+
+
+
+        if (isset($request->password)){
+            $data['password'] = Hash::make($request->password);
+        }
+
+
+        if ($request->file('image') && $user->image){
+            unlink(public_path('admin/media/'.$user->image));
+        }
+
+        if(isset($image)){
+            $filename = date('YmdHi').'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('admin/media'),$filename);
+            $data['image'] = $filename;
+        }
+
+        $user->update($data);
+
+        $notificat = array(
+            'message'    => 'doctor created successful',
+            'alert-type' => 'success');
+
+        return redirect(url('admin/doctor/index'))->with($notificat);
+
     }
 
     /**
@@ -138,6 +201,12 @@ class DoctorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Admin::findOrFail($id)->delete();
+
+        $notificat = array(
+            'message'    => 'doctor deleted successful',
+            'alert-type' => 'error');
+
+        return redirect(url('admin/doctor/index'))->with($notificat);
     }
 }

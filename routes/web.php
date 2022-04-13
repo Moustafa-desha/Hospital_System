@@ -17,14 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('admin/dashboard', function () {
-    return view('admin.dashboard');
-});
-
 
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('index/doctor', [DoctorController::class, 'index']);
-Route::get('create/doctor', [DoctorController::class, 'create']);
-Route::POST('store/doctor', [DoctorController::class, 'store'])->name('store.doctor');
+
+
+

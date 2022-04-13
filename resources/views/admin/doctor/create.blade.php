@@ -9,7 +9,7 @@
                     <i class="ik ik-edit bg-blue"></i>
                     <div class="d-inline">
                         <h5>Add New Doctor</h5>
-                        <span>add doctore and fill all information contact</span>
+                        <span>add doctor and fill all information contact</span>
                     </div>
                 </div>
             </div>
@@ -17,10 +17,8 @@
                 <nav class="breadcrumb-container" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="../index.html"><i class="ik ik-home"></i></a>
+                            <a href="{{url('admin/doctor/index')}}"><i class="ik ik-home"></i> All Doctors</a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#">Forms</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Components</li>
                     </ol>
                 </nav>
             </div>
@@ -32,7 +30,7 @@
         <div class="card">
             <div class="card-header"><h3>Add Doctor Form</h3></div>
             <div class="card-body">
-                <form class="forms-sample" method="POST" action="{{route('store.doctor')}}" enctype="multipart/form-data">
+                <form class="forms-sample" method="POST" action="{{route('admin.store.doctor')}}" enctype="multipart/form-data">
                     @csrf
                     @method('POST')
                     <div class="form-group">
