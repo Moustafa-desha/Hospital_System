@@ -104,8 +104,8 @@
                     <div class="nav-item has-sub">
                         <a href="#"><i class="ik ik-lock"></i><span>Authentication</span></a>
                         <div class="submenu-content">
-                            <a href="pages/login.html" class="menu-item">All Admins</a>
-                            <a href="pages/register.html" class="menu-item">Register</a>
+                            <a href="{{route('admin.role.index')}}" class="menu-item">All Roles</a>
+                            <a href="pages/register.html" class="menu-item"></a>
                             <a href="pages/forgot-password.html" class="menu-item">Forgot Password</a>
                         </div>
                     </div>

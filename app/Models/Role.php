@@ -12,7 +12,7 @@ class Role extends Model
     protected $guarded = [];
 
 
-    public function user()
+    public function admin()
     {
         return $this->hasOne(Admin::class);
     }

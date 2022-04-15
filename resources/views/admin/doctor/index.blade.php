@@ -33,7 +33,7 @@
                 <div class="card-header"><h3>Data Table</h3>
                 </div>
                 <div class="card-body">
-                   <div class="table-responsive">
+{{--                   <div class="table-responsive">--}}
                     <table id="data_table" class="table">
                         <thead>
                         <tr>
@@ -63,7 +63,7 @@
 {{--                                        <i class="ik ik-eye" ></i>--}}
 {{--                                    </a>--}}
                                     <a href="{{url('admin/doctor/edit/'.$user->id)}}"><i class="ik ik-edit-2"></i></a>
-                                    <a href="javascript:void(0);" onclick="document.getElementById('delete-{{$user->id}}').submit();"><i class="ik ik-trash-2"></i></a>
+                                    <a href="javascript:void(0);" onclick="document.getElementById('delete-{{$user->id}}').submit();"><i class="ik ik-trash-2 f-16 text-red"></i></a>
                                     <form style="display: none" method="post" action="{{url('admin/doctor/delete/'.$user->id)}}" id="delete-{{$user->id}}">
                                         @method('POST')
                                         @csrf
@@ -76,7 +76,7 @@
                         @endforelse
                         </tbody>
                     </table>
-                   </div>
+{{--                   </div>--}}
                     <div style="float:right">
                         {{ $data->links() }}
                     </div>

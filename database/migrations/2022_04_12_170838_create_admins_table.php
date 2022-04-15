@@ -17,16 +17,20 @@ class CreateAdminsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->unsignedBigInteger('role_id')->nullable();
+            $table->foreign('role_id')
+                                ->references('id')
+                                ->on('roles')
+                                ->cascadeOnDelete();
             $table->string('password');
             $table->string('gender');
             $table->string('phone')->nullable();
+            $table->string('image')->nullable();
             $table->string('address')->nullable();
             $table->string('department')->nullable();
             $table->string('education')->nullable();
-            $table->string('image')->nullable();
             $table->text('description')->nullable();
-            $table->foreignId('role_id')->default(0)->nullable()->constrained();
+            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

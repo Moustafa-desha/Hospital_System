@@ -201,8 +201,13 @@ class DoctorController extends Controller
      */
     public function destroy($id)
     {
-        Admin::findOrFail($id)->delete();
+        $user = Admin::findOrFail($id);
 
+        if ($user){
+            unlink(public_path('admin/media/'.$user->image));
+        }
+
+        $user->delete();
         $notificat = array(
             'message'    => 'doctor deleted successful',
             'alert-type' => 'error');
