@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AppointmentController;
 use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\Admin\RoleController;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::POST('doctor/store', [DoctorController::class, 'store'])->name('store.doctor');
         Route::get('doctor/edit/{id}', [DoctorController::class, 'edit'])->name('edit.doctor');
         Route::POST('doctor/update/{id}', [DoctorController::class, 'update'])->name('update.doctor');
+        Route::get('doctor/booking', [DoctorController::class, 'booking'])->name('booking.doctor');
+        Route::get('doctor/update/status/{id}', [DoctorController::class, 'updateStatus'])->name('update.status');
         Route::POST('doctor/delete/{id}', [DoctorController::class, 'destroy']);
 
         /* Role Section */
@@ -45,6 +48,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('role/edit/{id}',[RoleController::class,'edit'])->name('role.edit');
         Route::POST('role/update/{id}',[RoleController::class,'update'])->name('role.update');
         Route::POST('role/delete/{id}',[RoleController::class,'delete'])->name('role.delete');
+
+        /* Appointment Section */
+
+        Route::get('appoint/index',[AppointmentController::class,'index'])->name('appoint.index');
+        Route::POST('appoint/check',[AppointmentController::class,'check'])->name('appoint.check');
+        Route::get('appoint/create',[AppointmentController::class,'create'])->name('appoint.create');
+        Route::POST('appoint/store',[AppointmentController::class,'store'])->name('appoint.store');
+        Route::POST('appoint/update',[AppointmentController::class,'update'])->name('appoint.update');
 
     });
 });

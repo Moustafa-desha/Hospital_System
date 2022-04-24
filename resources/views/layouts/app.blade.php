@@ -18,6 +18,18 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!--for datepicker-->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"defer></script>
+
+
+    <!--for datepicker-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!--for datepicker-->
+
+    {{-- Toaster --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <div id="app">
@@ -52,12 +64,18 @@
                                 </li>
                             @endif
                         @else
+                            <a id="navbarDropdown" class="nav-link " href="{{route('user.my.booking')}}" role="button"  aria-haspopup="true" aria-expanded="false">
+                                My Booking
+                            </a>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a id="navbarDropdown" class="nav-link" href="{{ route('user.profile')}}" >
+                                        Profile
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -79,5 +97,46 @@
             @yield('content')
         </main>
     </div>
+
+
+    {{-- Toaster --}}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script>
+        @if(Session::has('message'))
+        let type = "{{ Session::get('alert-type','success') }}"
+        switch(type){
+            case 'success':
+                toastr.success("{{ Session::get('message') }}");
+                break;
+
+            case 'info' :
+                toastr.info("{{ Session::get('message') }}");
+                break;
+
+            case 'warning' :
+                toastr.warning("{{ Session::get('message') }}");
+                break;
+
+            case 'error' :
+                toastr.error("{{ Session::get('message') }}");
+                break;
+        }
+        @endif
+    </script>
+
+    {{-- For DatePicker TO make User Check by Date and edit format date like database --}}
+    <script>
+        var dateToday = new Date();
+        $( function() {
+            $("#datepicker").datepicker({
+                dateFormat:"yy-mm-dd",
+                showButtonPanel:true,
+                numberOfMonths:2,
+                minDate:dateToday,
+            });
+        });
+
+    </script>
 </body>
 </html>

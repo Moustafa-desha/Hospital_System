@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\Booking;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -191,6 +193,32 @@ class DoctorController extends Controller
 
         return redirect(url('admin/doctor/index'))->with($notificat);
 
+    }
+
+    public function booking(Request $request)
+    {
+        if ($request->date){
+            $bookings = Booking::latest()->where('doctor_id',Auth::id())
+                ->where('date',$request->date)->paginate(10);
+            return view('admin.doctor.booking',compact('bookings'));
+        }
+
+        $bookings = Booking::latest()->where('doctor_id',Auth::id())->paginate(10);
+        return view('admin.doctor.booking',compact('bookings'));
+    }/* End Method */
+
+
+    public function updateStatus($id)
+    {
+       $book = Booking::whereId($id)->first();
+        $book->status =! $book->status;
+        $book->save();
+
+        $notificat = array(
+            'message' => 'Status Changed',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notificat);
     }
 
     /**

@@ -1,7 +1,7 @@
 <footer class="footer">
     <div class="w-100 clearfix">
         <span class="text-center text-sm-left d-md-inline-block">Copyright © 2018 ThemeKit v2.0. All Rights Reserved.</span>
-        <span class="float-none float-sm-right mt-1 mt-sm-0 text-center">Crafted with <i class="fa fa-heart text-danger"></i> by <a href="http://lavalite.org/" class="text-dark" target="_blank">Lavalite</a></span>
+        <span class="float-none float-sm-right mt-1 mt-sm-0 text-center">Crafted with <i class="fa fa-heart text-danger"></i> by <a href="https://www.facebook.com/mostafa201192/" class="text-dark" target="_blank">Dev-Moustafa</a></span>
     </div>
 </footer>
 
@@ -116,6 +116,15 @@
 <script src="{{asset('js/widgets.js')}}"></script>
 <script src="{{asset('js/charts.js')}}"></script>
 <script src="{{asset('dist/js/theme.min.js')}}"></script>
+
+  {{-- to format date in appointment page to choose only day without time --}}
+    <script type="text/javascript">
+        $(document).ready(function (){
+            $("#datepicker").datetimepicker({
+                format:'YYYY-MM-DD'
+            })
+        })
+    </script>
 
 {{-- Toaster --}}
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
