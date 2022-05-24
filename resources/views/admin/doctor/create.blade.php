@@ -100,8 +100,17 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="exampleInputName8">Address</label>
-                            <input type="text" class="form-control @error('address') is-invalid @enderror" id="exampleInputName8" placeholder="Specialist" name="address" value="{{ old('address') }}">
+                            <label for="exampleInputName8">Department</label>
+                            <input type="text" class="form-control @error('department') is-invalid @enderror" id="exampleInputName8" placeholder="Department" name="department" value="{{ old('department') }}">
+                            @error('department')<span class="invalid-feedback" role="alert">{{$message}}</span>@enderror
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputName9">Address</label>
+                            <input type="text" class="form-control @error('address') is-invalid @enderror" id="exampleInputName9" placeholder="Specialist" name="address" value="{{ old('address') }}">
                             @error('address')<span class="invalid-feedback" role="alert">{{$message}}</span>@enderror
 
                         </div>
