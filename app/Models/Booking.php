@@ -20,4 +20,5 @@ class Booking extends Model
     {
         return $this->belongsTo(Admin::class,'doctor_id','id');
     }
+
 }

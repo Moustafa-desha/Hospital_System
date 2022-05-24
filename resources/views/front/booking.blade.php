@@ -47,6 +47,7 @@
                                 <button class="btn-sm btn-dark">Not Visited</button>
                             @else
                                 <button class="btn btn-success">Checked</button>
+                                <a class="btn btn-primary" href="{{url("user/prescription/view/".$book->user_id)}}">View</a>
 
                             @endif
                         </td>

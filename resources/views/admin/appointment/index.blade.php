@@ -40,8 +40,8 @@
             <div class="card-body">
                     <div class="form-group">
                         <label for="date">Date</label>
-                        <input type="text" class="form-control datetimepicker-input @error('date') is-invalid @enderror" id="datepicker"
-                               data-toggle="datetimepicker" data-target="#datepicker" name="date" autocomplete="off">
+                        <input type="text" class="form-control @error('date') is-invalid @enderror" id="datepicker"
+                               name="date" autocomplete="off">
                         @error('date')<span class="invalid-feedback" role="alert">{{$message}}</span>@enderror
 
                     </div>

@@ -117,14 +117,9 @@
 <script src="{{asset('js/charts.js')}}"></script>
 <script src="{{asset('dist/js/theme.min.js')}}"></script>
 
-  {{-- to format date in appointment page to choose only day without time --}}
-    <script type="text/javascript">
-        $(document).ready(function (){
-            $("#datepicker").datetimepicker({
-                format:'YYYY-MM-DD'
-            })
-        })
-    </script>
+{{-- for multi input tages --}}
+<script src="{{asset('plugins/multiinput/http_cdn.jsdelivr.net_bootstrap.tagsinput_0.8.0_bootstrap-tagsinput.js')}}"></script>
+<script src="{{asset('plugins/multiinput/http_code.jquery.com_jquery-3.3.1.js')}}"></script>
 
 {{-- Toaster --}}
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -150,6 +145,26 @@
                 break;
     }
     @endif
+</script>
+
+{{-- to format date in appointment page to choose only day without time --}}
+<script type="text/javascript">
+    // $(document).ready(function (){
+    //     $("#datepicker").datetimepicker({
+    //         format:'YYYY-MM-DD'
+    //     })
+    // })
+
+    let dateToday = new Date();
+    $( function() {
+        $("#datepicker").datepicker({
+            dateFormat:"yy-mm-dd",
+            showButtonPanel:true,
+            numberOfMonths:2,
+            minDate:dateToday,
+        });
+    });
+
 </script>
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

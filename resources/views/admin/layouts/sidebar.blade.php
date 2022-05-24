@@ -32,7 +32,7 @@
                     </div>
                     <div class="nav-lavel">Doctors & Booking table</div>
                     <div class="nav-item has-sub">
-                        <a href="#"><i class="ik ik-box"></i><span>Doctors</span></a>
+                        <a href="#"><i class="fas fa-user-md"></i><span>Doctors</span></a>
                         <div class="submenu-content">
                             <a href="{{route('admin.index.doctor')}}" class="menu-item">All Doctors</a>
                             <a href="{{route('admin.create.doctor')}}" class="menu-item">Add New Doctor</a>
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="nav-item has-sub">
-                        <a href="#"><i class="ik ik-gitlab"></i><span>Appointment</span> <span class="badge badge-success">New</span></a>
+                        <a href="#"><i class="fas fa-calendar-check"></i><span>Appointment</span> <span class="badge badge-success">New</span></a>
                         <div class="submenu-content">
                             <a href="{{ route('admin.appoint.index')}}" class="menu-item">Appointment</a>
                             <a href="{{ route('admin.appoint.create')}}" class="menu-item">Create Appointment</a>
@@ -49,20 +49,20 @@
                         </div>
                     </div>
                     <div class="nav-item has-sub">
-                        <a href="#"><i class="ik ik-package"></i><span>Booking Table</span></a>
+                        <a href="#"><i class="fas fa-calendar-alt"></i><span>Booking Table</span></a>
                         <div class="submenu-content">
                             <a href="{{ route('admin.booking.doctor')}}" class="menu-item">Booking</a>
                         </div>
                     </div>
                     <div class="nav-item">
-                        <a href="pages/ui/icons.html"><i class="ik ik-command"></i><span>Icons</span></a>
+                        <a href="{{route('admin.patient')}}"><i class="fas fa-user-injured"></i><span>Patient</span></a>
                     </div>
 
 
                     <div class="nav-lavel">Admins & Roles</div>
 
                     <div class="nav-item has-sub">
-                        <a href="#"><i class="ik ik-lock"></i><span>Authentication</span></a>
+                        <a href="#"><i class="fas fa-user-shield"></i><span>Authentication</span></a>
                         <div class="submenu-content">
                             <a href="{{route('admin.role.index')}}" class="menu-item">All Roles</a>
                             <a href="pages/register.html" class="menu-item"></a>
@@ -70,7 +70,7 @@
                         </div>
                     </div>
                     <div class="nav-item has-sub">
-                        <a href="#"><i class="ik ik-file-text"></i><span>Profile</span></a>
+                        <a href="#"><i class="fas fa-address-card"></i><span>Profile</span></a>
                         <div class="submenu-content">
                             <a href="pages/profile.html" class="menu-item">Profile</a>
                         </div>

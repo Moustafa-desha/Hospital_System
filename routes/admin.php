@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AppointmentController;
 use App\Http\Controllers\Admin\DoctorController;
+use App\Http\Controllers\Admin\PrescriptionController;
 use App\Http\Controllers\Admin\RoleController;
 use Illuminate\Support\Facades\Route;
 
@@ -50,12 +51,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::POST('role/delete/{id}',[RoleController::class,'delete'])->name('role.delete');
 
         /* Appointment Section */
-
         Route::get('appoint/index',[AppointmentController::class,'index'])->name('appoint.index');
         Route::POST('appoint/check',[AppointmentController::class,'check'])->name('appoint.check');
         Route::get('appoint/create',[AppointmentController::class,'create'])->name('appoint.create');
         Route::POST('appoint/store',[AppointmentController::class,'store'])->name('appoint.store');
         Route::POST('appoint/update',[AppointmentController::class,'update'])->name('appoint.update');
 
+        /* Prescription Section*/
+        Route::get('patient-today',[PrescriptionController::class,'index'])->name('patient');
+        Route::POST('prescription/store',[PrescriptionController::class,'prescrStore'])->name('prescription.store');
+        Route::get('prescription/view/{id}',[PrescriptionController::class,'prescrView'])->name('prescription.view');
+        Route::get('prescription/edit/{id}',[PrescriptionController::class,'prescrEdit'])->name('prescription.edit');
+        Route::POST('prescription/save/edit/{id}',[PrescriptionController::class,'saveEdit']);
     });
 });

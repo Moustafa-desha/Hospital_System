@@ -17,6 +17,8 @@ class UserController extends Controller
 {
     public function welcome()
     {
+        date_default_timezone_set('Europe/Moscow');
+
         $doctors = Appointment::where('date',date('Y-m-d'))->get();
 
             if (\request('date')){

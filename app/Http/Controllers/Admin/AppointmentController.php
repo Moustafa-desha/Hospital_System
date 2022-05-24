@@ -19,7 +19,7 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        $appoints = Appointment::where('admin_id',Auth::id())->get();
+        $appoints = Appointment::where('admin_id',Auth::id())->orderBy('id','DESC')->get();
         return view('admin.appointment.index',compact('appoints'));
     }
 

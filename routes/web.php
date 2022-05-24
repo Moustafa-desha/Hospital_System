@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\PrescriptionController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
@@ -38,6 +39,9 @@ Route::prefix('user')->name('user.')->group(function (){
         Route::get('profile',[ProfileController::class,'profile'])->name('profile');
         Route::POST('profile/store/{id}',[ProfileController::class,'store'])->name('profile.store');
         Route::POST('profile/picture/{id}',[ProfileController::class,'profilePic'])->name('profile.pic');
+
+        /* Prescription Section*/
+        Route::get('prescription/view/{id}',[PrescriptionController::class,'prescrView'])->name('prescription.view');
 
     });
 });
